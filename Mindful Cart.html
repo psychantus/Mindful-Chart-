@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mindful Cart</title>
+<style>
+:root{--sage:#7FA37A;--sage-d:#4E7A4A;--sage-l:#E3EFDD;--beige:#F7F2E8;--white:#FFFFFF;--ink:#2B3128;--muted:#737A6C;--line:#EAE4D6;--warn:#C98A2E;--danger:#C0584F;--peach:#F09A72;--peach-l:#FDE6DA;--lilac:#9B8BD0;--lilac-l:#ECE7FA;--sky:#6BAFD6;--sky-l:#DDEFF9;--butter:#E8B92E;--butter-l:#FBF0C8}
+html[data-theme=dark]{color-scheme:dark;--white:#1E2320;--ink:#EDF1E8;--muted:#9AA293;--line:#2F3730;--beige:#171B18;--sage-l:#27352A;--peach-l:#3A2A24;--lilac-l:#2B2740;--sky-l:#1F3140;--butter-l:#3A3322}
+html[data-theme=dark] body{background:radial-gradient(circle at 10% 0%,#1F3140 0,transparent 40%),radial-gradient(circle at 100% 20%,#3A2A24 0,transparent 40%),linear-gradient(160deg,#171B18,#1A211C)}
+html[data-theme=dark] aside,html[data-theme=dark] nav.tabs{background:#1E2320;border-color:#2F3730}
+html[data-theme=dark] .btn,html[data-theme=dark] .chip{background:#252B26;color:#EDF1E8}
+html[data-theme=dark] input,html[data-theme=dark] select,html[data-theme=dark] textarea{background:#252B26;color:#EDF1E8;border-color:#2F3730}
+html[data-theme=dark] .toast{background:#EDF1E8;color:#171B18}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(circle at 10% 0%,#DDEFF9 0,transparent 40%),radial-gradient(circle at 100% 20%,#FDE6DA 0,transparent 40%),linear-gradient(160deg,#F7F2E8,#EEF5E8);color:var(--ink);min-height:100vh;padding-bottom:84px}
+.app{max-width:1100px;margin:0 auto;display:flex;min-height:100vh}
+aside{display:none;width:230px;background:var(--white);border-right:1px solid var(--line);padding:28px 18px;position:sticky;top:0;height:100vh}
+.brand{font-weight:700;font-size:18px;color:var(--sage-d);margin-bottom:28px}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:12px}
+main{flex:1;padding:24px 18px}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:var(--white);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:8px 4px 14px;z-index:10}
+nav.tabs button,aside button{background:none;border:0;font:inherit;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;padding:6px 8px;border-radius:12px}
+nav.tabs button.on,aside button.on{color:var(--sage-d);font-weight:600}
+aside button{flex-direction:row;font-size:14px;gap:10px;width:100%;padding:10px 12px;margin-bottom:4px;justify-content:flex-start}
+aside button.on{background:var(--sage-l)}
+.ico{font-size:18px;line-height:1}
+.add-fab{background:var(--sage-d)!important;color:#fff!important;border-radius:50%!important;width:52px;height:52px;justify-content:center!important;padding:0!important;margin-top:-22px;font-size:11px}
+.add-fab .ico{font-size:24px}
+h1{font-size:22px;margin-bottom:4px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+.card{background:var(--white);border-radius:20px;padding:18px;border:1px solid var(--line);transition:transform .2s,box-shadow .2s;animation:rise .4s ease both}.card:hover{transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(60,80,50,.35)}.t-sage{background:var(--sage-l);border-color:transparent}.t-peach{background:var(--peach-l);border-color:transparent}.t-lilac{background:var(--lilac-l);border-color:transparent}.t-sky{background:var(--sky-l);border-color:transparent}.t-butter{background:var(--butter-l);border-color:transparent}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.btn{transition:transform .15s,background .2s,color .2s}.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}.btn.on{background:var(--sage);color:#fff;border-color:var(--sage)}.btn.no.on{background:var(--danger);border-color:var(--danger)}.btn.ra.on{background:var(--butter);border-color:var(--butter);color:var(--ink)}.btn.p{background:linear-gradient(135deg,var(--sage-d),var(--sky));border:0;color:#fff}.bars div:nth-child(2){background:var(--butter)}.bars div:nth-child(3){background:var(--peach)}.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-size:13px;transition:all .3s;z-index:30;pointer-events:none;max-width:90%}.toast.show{opacity:1;transform:translateX(-50%)}.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}.chip{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;transition:all .2s;color:var(--ink)}.chip.on{background:var(--sage-d);color:#fff;border-color:var(--sage-d)}.chip:hover{transform:translateY(-1px)}nav.tabs button:hover,aside button:hover{color:var(--sage-d)}@media(min-width:900px){.toast{bottom:28px}}
+.stat-n{font-size:24px;font-weight:700;color:var(--sage-d)}
+.stat-l{font-size:12px;color:var(--muted);margin-top:4px}
+.section-t{font-size:15px;font-weight:600;margin:24px 0 10px}
+.item{display:flex;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.item:last-child{border-bottom:0}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--sage);flex-shrink:0}
+.item .t{flex:1;font-size:14px}
+.item .m{font-size:12px;color:var(--muted)}
+.pill{font-size:11px;padding:4px 10px;border-radius:999px;background:var(--sage-l);color:var(--sage-d);white-space:nowrap}
+.pill.w{background:#F6EBD9;color:var(--warn)}
+.pill.d{background:#F3E1DE;color:var(--danger)}
+.wl{display:grid;gap:14px;grid-template-columns:1fr}
+@media(min-width:720px){.wl{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(4,1fr)}}
+.price{font-size:18px;font-weight:700;margin:6px 0}
+.cat{font-size:12px;color:var(--muted)}
+.reason{font-size:13px;color:var(--ink);background:var(--beige);border-radius:12px;padding:10px 12px;margin:12px 0;font-style:italic}
+.countdown{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--muted);margin-bottom:8px}
+.bar{height:8px;background:var(--line);border-radius:999px;overflow:hidden}
+.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--sage),var(--sky));border-radius:999px;transition:width .6s ease}
+.actions{display:flex;gap:8px;margin-top:14px}
+.btn{flex:1;border:1px solid var(--line);background:var(--white);border-radius:12px;padding:10px;font:inherit;font-size:13px;cursor:pointer;color:var(--ink)}
+.btn.p{background:var(--sage-d);color:#fff;border-color:var(--sage-d)}
+.quote{background:var(--sage-l);border-radius:20px;padding:20px;color:var(--sage-d);font-size:15px;line-height:1.5;margin-bottom:16px}
+label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+input,select,textarea{width:100%;font:inherit;font-size:14px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--white);color:var(--ink)}
+textarea{resize:vertical;min-height:80px}
+.err{color:var(--danger);font-size:12px;margin-top:4px;min-height:16px}
+.empty{text-align:center;color:var(--muted);padding:40px 16px;font-size:14px}
+.bars{display:flex;gap:10px;align-items:flex-end;height:140px;margin-top:10px}
+.bars div{flex:1;background:var(--sage);border-radius:10px 10px 4px 4px;position:relative}
+.bars div span{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:11px;color:var(--muted)}
+.bars div b{position:absolute;top:-18px;left:0;right:0;text-align:center;font-size:11px}
+.mid-hint{font-size:12px;color:var(--muted);margin-top:8px}
+@media(min-width:900px){
+  aside{display:block}
+  nav.tabs{display:none}
+  body{padding-bottom:0}
+  .add-fab{display:none}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside>
+    <div class="brand">Mindful Cart<small>Belanja dengan sadar</small></div>
+    <button data-go="dashboard"><span class="ico">◐</span>Dashboard</button>
+    <button data-go="wishlist"><span class="ico">♡</span>Wishlist</button>
+    <button data-go="add"><span class="ico">＋</span>Tambah Produk</button>
+    <button data-go="insights"><span class="ico">▲</span>Insights</button>
+    <button data-go="profile"><span class="ico">○</span>Profil</button>
+  </aside>
+
+  <main id="view"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+<nav class="tabs">
+  <button data-go="dashboard"><span class="ico">◐</span>Dashboard</button>
+  <button data-go="wishlist"><span class="ico">♡</span>Wishlist</button>
+  <button data-go="add" class="add-fab"><span class="ico">＋</span></button>
+  <button data-go="insights"><span class="ico">▲</span>Insights</button>
+  <button data-go="profile"><span class="ico">○</span>Profil</button>
+</nav>
+
+<script>
+const DAY = 86400000;
+const SEED = {
+  name: "Rama",
+  waitDays: 7,
+  items: [
+    {id:1,name:"Sepatu lari",price:650000,category:"Fashion",reason:"Sepatu lama mulai rusak, tapi sedang diskon besar.",added:Date.now()-2*DAY,status:"waiting",wait:7,decision:null},
+    {id:2,name:"Earphone wireless",price:299000,category:"Elektronik",reason:"Earphone sekarang masih berfungsi baik.",added:Date.now()-8*DAY,status:"ready",wait:7,decision:null},
+    {id:3,name:"Tumbler stainless",price:120000,category:"Gaya Hidup",reason:"Sering lupa membawa minum.",added:Date.now()-1*DAY,status:"waiting",wait:7,decision:null},
+    {id:4,name:"Kamera mirrorless",price:8500000,category:"Elektronik",reason:"Ingin hobi fotografi.",added:Date.now()-20*DAY,status:"done",wait:7,decision:"cancel",saved:8500000},
+    {id:5,name:"Jaket denim",price:375000,category:"Fashion",reason:"Ikut tren.",added:Date.now()-15*DAY,status:"done",wait:7,decision:"cancel",saved:375000}
+  ],
+  activity: [
+    {t:"Membatalkan pembelian Jaket denim",d:"3 hari lalu"},
+    {t:"Menunda Sepatu lari selama 7 hari",d:"5 hari lalu"},
+    {t:"Membatalkan pembelian Kamera mirrorless",d:"1 minggu lalu"}
+  ],
+  reflectOpen:null,budget:2000000,hourly:17000,filter:"all"
+};
+
+const state = {items:[],activity:[],name:"Rama",waitDays:7,budget:2000000,hourly:17000,filter:"all",reflectOpen:null};
+const rp = n => "Rp " + n.toLocaleString("id-ID");
+const endOf = it => it.added + it.wait*DAY;
+function remaining(it){ return Math.max(0, endOf(it) - Date.now()); }
+function daysLeft(it){ return Math.ceil(remaining(it)/DAY); }
+function progress(it){ return Math.min(100, Math.round((Date.now()-it.added)/(it.wait*DAY)*100)); }
+function fmtDate(t){ return new Date(t).toLocaleDateString("id-ID",{day:"numeric",month:"short",year:"numeric"}); }
+
+const views = {
+  dashboard(){
+    const waiting = state.items.filter(i=>i.status==="waiting").length;
+    const saved = state.items.filter(i=>i.decision==="cancel").reduce((a,i)=>a+i.saved,0);
+    const cancelled = state.items.filter(i=>i.decision==="cancel").length;
+    const total = state.items.filter(i=>i.decision).length || 1;
+    const buy = state.items.filter(i=>i.decision==="buy").length;
+    const later = state.items.filter(i=>i.decision==="delay").length;
+    const act = state.activity.map(a=>`<div class="item"><div class="dot"></div><div class="t">${a.t}</div><div class="m">${a.d}</div></div>`).join("");
+    return `
+      <h1>Mindful Chart</h1>
+      <p class="sub">Setiap jeda adalah kesempatan untuk memilih lebih sadar.</p><div class="actions" style="margin:0 0 18px"><button class="btn p" data-go="add">+ Catat niat belanja</button></div>
+      <div class="grid">
+        <div class="card t-sage" data-go="wishlist" style="cursor:pointer"><div class="stat-n">${state.items.filter(i=>i.status!=="done").length}</div><div class="stat-l">Produk di wishlist</div></div>
+        <div class="card t-butter" data-go="wishlist" style="cursor:pointer"><div class="stat-n">${waiting}</div><div class="stat-l">Sedang masa tunggu</div></div>
+        <div class="card t-peach" data-go="insights" style="cursor:pointer"><div class="stat-n">${rp(saved)}</div><div class="stat-l">Dana Terselamatkan</div></div>
+        <div class="card t-lilac" data-go="insights" style="cursor:pointer"><div class="stat-n">${Math.round(cancelled/total*100)}%</div><div class="stat-l">Keputusan membatalkan</div></div>
+      </div>
+      <div class="section-t">Statistik keputusan</div>
+      <div class="card">
+        <div class="countdown"><span>Beli ${buy}</span><span>Tunda ${later}</span><span>Batal ${cancelled}</span></div>
+        <div class="bar"><span style="width:${Math.round(buy/total*100)}%"></span></div>
+      </div>
+      <div class="section-t">Aktivitas terbaru</div>
+      <div class="card">${act}</div>`;
+  },
+
+  wishlist(){
+    const list = state.items.filter(i=>{ const ready=(i.status==="ready"||remaining(i)===0)&&i.status!=="done"; if(state.filter==="done") return i.status==="done"; if(state.filter==="ready") return ready; if(state.filter==="wait") return i.status==="waiting"&&!ready; return i.status!=="done"; });
+    if(!list.length) return `<h1>Wishlist</h1><p class="sub">Belum ada produk.</p><div class="card empty">Tambahkan produk yang ingin kamu beli, lalu beri jeda 7 hari.</div>`;
+    const cards = list.map(it=>{
+      const ready = it.status==="ready" || remaining(it)===0;
+      const act = ready
+        ? `<button class="btn p" data-reflect="${it.id}">Mulai refleksi</button>`
+        : `<button class="btn" data-delete="${it.id}">Hapus</button>`;
+      return `
+      <div class="card">
+        <div class="countdown"><span class="cat">${it.category}</span><span class="pill ${ready?'':'w'}">${ready?'Siap dievaluasi':'Tunggu '+daysLeft(it)+' hari'}</span></div>
+        <div style="font-weight:600;font-size:16px">${it.name}</div>
+        <div class="price">${rp(it.price)}</div>
+        <div class="bar"><span style="width:${progress(it)}%"></span></div>
+        <div class="reason">“${it.reason}”</div>
+        <div class="mid-hint">Dapat dievaluasi: ${fmtDate(endOf(it))}</div>
+        <div class="actions">${act}</div>
+      </div>`;}).join("");
+    return `<div class="chips">${[["all","Semua"],["wait","Menunggu"],["ready","Siap dievaluasi"],["done","Selesai"]].map(([k,l])=>`<button class="chip ${state.filter===k?'on':''}" data-filter="${k}">${l}</button>`).join("")}</div><p class="sub">${list.length} produk</p><div class="wl">${cards}</div>`;
+  },
+
+  add(){
+    return `
+      <h1>Tambah Produk</h1>
+      <p class="sub">Tahan checkout, lalu catat barangnya di sini. Jeda dikunci otomatis sesuai jenis dan harga barang.</p>
+      <div class="card" style="max-width:520px">
+        <label for="f-name">Nama produk</label>
+        <input id="f-name" placeholder="Contoh: Sepatu lari">
+        <div class="err" id="e-name"></div>
+        <label for="f-price">Harga (Rp)</label>
+        <input id="f-price" inputmode="numeric" placeholder="Contoh: 250000">
+        <div class="err" id="e-price"></div>
+        <label for="f-cat">Kategori</label>
+        <select id="f-cat"><option>Fashion</option><option>Elektronik</option><option>Gaya Hidup</option><option>Kecantikan</option><option>Lainnya</option></select>
+        <label for="f-link">Tempel tautan produk dari Shopee, TikTok Shop, atau Tokopedia (opsional)</label>
+        <input id="f-link" placeholder="https://">
+        <label for="f-trig">Pemicu keinginan beli</label><select id="f-trig"><option>Live shopping</option><option>Konten affiliate / keranjang kuning</option><option>Promo kilat / voucher</option><option>Tren viral</option><option>Kebutuhan sendiri</option></select><label for="f-reason">Alasan ingin membeli</label>
+        <textarea id="f-reason" placeholder="Apa yang mendorong keinginan ini?"></textarea>
+        <div class="err" id="e-reason"></div>
+        <div class="actions"><button class="btn p" id="save">Simpan ke wishlist</button></div>
+      </div>`;
+  },
+
+  insights(){
+    const done = state.items.filter(i=>i.decision);
+    const cancelled = done.filter(i=>i.decision==="cancel");
+    const value = cancelled.reduce((a,i)=>a+i.saved,0);
+    const counts = {Beli:done.filter(i=>i.decision==="buy").length,Tunda:done.filter(i=>i.decision==="delay").length,Batal:cancelled.length};
+    const max = Math.max(1,...Object.values(counts));
+    const bars = Object.entries(counts).map(([k,v])=>`<div style="height:${v/max*100}%"><b>${v}</b><span>${k}</span></div>`).join("");
+    const cats = {};
+    state.items.forEach(i=>cats[i.category]=(cats[i.category]||0)+1);
+    const catHtml = Object.entries(cats).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="item"><div class="t">${k}</div><div class="pill">${v} produk</div></div>`).join("");
+    return `
+      <h1>Insights</h1>
+      <p class="sub">Gambaran kebiasaan belanjamu dari data aktual.</p>
+      <div class="grid">
+        <div class="card t-sky"><div class="stat-n">${cancelled.length}</div><div class="stat-l">Produk dibatalkan</div></div>
+        <div class="card t-peach"><div class="stat-n">${rp(value)}</div><div class="stat-l">Dana Terselamatkan (total)</div></div>
+      </div>
+      <div class="section-t">Keputusan setelah masa tunggu</div>
+      <div class="card">
+        ${done.length ? `<div class="bars">${bars}</div><div style="height:26px"></div>` : `<div class="empty">Belum ada keputusan.</div>`}
+      </div>
+      <div class="section-t">Kategori paling sering masuk wishlist</div>
+      <div class="card">${catHtml}</div>`;
+  },
+
+  profile(){
+    return `
+      <h1>Profil</h1>
+      <p class="sub">Atur pengalaman jedamu.</p>
+      <div class="card" style="max-width:520px">
+        <div style="font-weight:600;font-size:16px">${state.name}</div>
+        <div class="cat" style="margin-bottom:14px">Pengguna Mindful Cart</div>
+        <label>Durasi masa tunggu (hari)</label>
+        <select id="p-wait">${[3,7,14,30].map(d=>`<option value="${d}" ${d===state.waitDays?'selected':''}>${d} hari</option>`).join("")}</select>
+        <div class="mid-hint">Pengaturan berlaku untuk produk baru.</div><div class="actions"><button class="btn" data-theme-toggle>Ganti mode gelap / terang</button></div>
+      </div>`;
+  },
+
+  reflect(id){
+    const it = state.items.find(i=>i.id==id);
+    const qs = ["Apakah barang ini benar-benar kamu butuhkan?","Apakah kamu membeli barang ini karena diskon atau promosi?","Apakah kamu merasa takut kehabisan produk?","Apakah kamu sudah memiliki barang serupa?","Apakah pembelian ini sesuai dengan kondisi keuanganmu?","Apakah kamu masih ingin membeli produk ini setelah menunggu tujuh hari?"];
+    return `
+      <h1>Refleksi</h1>
+      <p class="sub">${it.name} · ${rp(it.price)}</p>
+      <div class="card t-sky" style="margin-bottom:12px;max-width:620px"><div style="font-size:13px;color:var(--muted)">Ekuivalensi harga</div><div style="font-size:15px;margin-top:6px">Harga ini setara <b>${Math.round(it.price/state.hourly)} jam kerja</b> atau <b>${Math.round(it.price/state.budget*100)}%</b> dari anggaran bulananmu.</div></div><div class="quote">Apakah kamu masih menginginkan barang ini, atau hanya tertarik karena sedang ada diskon?</div>
+      <div class="card" style="max-width:620px">
+        ${qs.map((q,i)=>`<div style="margin-bottom:16px"><div style="font-size:14px;margin-bottom:8px">${i+1}. ${q}</div>
+          <div class="actions ans" style="margin-top:0"><button class="btn ye" data-a="1">Ya</button><button class="btn no" data-a="0">Tidak</button><button class="btn ra" data-a="2">Ragu</button></div></div>`).join("")}
+        <div class="bar" style="margin-bottom:6px"><span id="rbar" style="width:0%"></span></div><div class="mid-hint" id="rhint">Jawab 6 pertanyaan untuk melanjutkan.</div><div class="actions" id="dec" style="opacity:.4;pointer-events:none"><button class="btn p" data-decide="${id}" data-d="buy">Beli</button><button class="btn" data-decide="${id}" data-d="delay">Tunda</button><button class="btn" data-decide="${id}" data-d="cancel">Batalkan</button></div>
+      </div>`;
+  }
+};
+
+let current = "dashboard";
+function render(name, arg){
+  current = name;
+  const html = name==="reflect" ? views.reflect(arg) : views[name]();
+  document.getElementById("view").innerHTML = html;
+  document.querySelectorAll("[data-go]").forEach(b=>b.classList.toggle("on", b.dataset.go===name));
+  window.scrollTo(0,0);
+}
+
+document.addEventListener("click", e=>{
+  const go = e.target.closest("[data-go]");
+  if(go){ render(go.dataset.go); return; }
+  const r = e.target.closest("[data-reflect]");
+  if(r){ render("reflect", r.dataset.reflect); return; }
+  const dl = e.target.closest("[data-delete]");
+  if(dl){ state.items = state.items.filter(i=>i.id!=dl.dataset.delete); render("wishlist"); return; }
+  const dc = e.target.closest("[data-decide]");
+  if(dc){
+    const it = state.items.find(i=>i.id==dc.dataset.decide);
+    const d = dc.dataset.d;
+    toast(d==="cancel"?"Dana terselamatkan tercatat. Bagus! 🌿":d==="buy"?"Keputusan dicatat. Belanja dengan sadar.":"Jeda diperpanjang. Kamu punya waktu lagi.");
+    it.decision = d;
+    if(d==="cancel"){ it.status="done"; it.saved=it.price; state.activity.unshift({t:`Membatalkan pembelian ${it.name}`,d:"Baru saja"}); }
+    else if(d==="buy"){ it.status="done"; state.activity.unshift({t:`Membeli ${it.name}`,d:"Baru saja"}); }
+    else { it.added = Date.now(); it.status="waiting"; it.decision=null; state.activity.unshift({t:`Menunda ${it.name} selama 7 hari`,d:"Baru saja"}); }
+    render("wishlist"); return;
+  }
+  if(e.target.closest("[data-theme-toggle]")){ const d=document.documentElement; d.dataset.theme = d.dataset.theme==="dark"?"light":"dark"; try{localStorage.setItem("mc-theme",d.dataset.theme)}catch(_){} return; }
+  const fl = e.target.closest("[data-filter]");
+  if(fl){ state.filter = fl.dataset.filter; render("wishlist"); return; }
+  const ans = e.target.closest("[data-a]");
+  if(ans){
+    ans.parentElement.querySelectorAll("[data-a]").forEach(b=>b.classList.remove("on"));
+    ans.classList.add("on");
+    const done = document.querySelectorAll(".ans .on").length;
+    document.getElementById("rbar").style.width = (done/6*100)+"%";
+    const hint = document.getElementById("rhint");
+    if(done===6){ hint.textContent = "Terima kasih sudah merefleksikan. Pilih keputusanmu dengan tenang."; document.getElementById("dec").style.cssText = ""; }
+    else hint.textContent = `Sudah ${done} dari 6 pertanyaan dijawab.`;
+    return;
+  }
+  if(e.target.id==="save"){ saveItem(); }
+});
+
+document.addEventListener("change", e=>{
+  if(e.target.id==="p-wait"){ state.waitDays = Number(e.target.value); }
+});
+
+function saveItem(){
+  const name = document.getElementById("f-name").value.trim();
+  const price = Number(document.getElementById("f-price").value.replace(/\D/g,""));
+  const reason = document.getElementById("f-reason").value.trim();
+  const cat = document.getElementById("f-cat").value;
+  const trig = document.getElementById("f-trig").value;
+  const link = document.getElementById("f-link").value.trim();
+  let ok = true;
+  document.getElementById("e-name").textContent = name ? "" : "Nama produk wajib diisi.";
+  document.getElementById("e-price").textContent = price > 0 ? "" : "Masukkan harga yang valid.";
+  document.getElementById("e-reason").textContent = reason.length >= 10 ? "" : "Alasan minimal 10 karakter.";
+  if(!name || !(price>0) || reason.length<10) ok = false;
+  if(!ok) return;
+  const id = Date.now();
+  state.items.unshift({id,name,price,category:cat,link,reason,trigger:trig,added:Date.now(),status:"waiting",wait:lockDays(price,cat,trig),decision:null});
+  state.activity.unshift({t:`Menambahkan ${name} ke wishlist`,d:"Baru saja"});
+  toast("Produk masuk masa tunggu 7 hari. Selamat menunggu dengan sadar 🌿");
+  render("wishlist");
+}
+
+function lockDays(price,cat,trig){ if(price>=2000000||/Promo|Live/.test(trig)) return 7; if(price>=300000||cat==="Fashion") return 3; return 1; }
+function toast(m){const t=document.getElementById("toast");t.textContent=m;t.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove("show"),2600)}
+try{document.documentElement.dataset.theme=localStorage.getItem("mc-theme")||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light")}catch(_){document.documentElement.dataset.theme="light"}
+render("dashboard");
+setInterval(()=>{ if(current==="wishlist") render("wishlist"); }, 60000);
+</script>
+</body>
+</html>
