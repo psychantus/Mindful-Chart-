@@ -4,16 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Mindful Cart</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%231F2A44'/%3E%3Cpath d='M10 16h7l6 26h23l5-18H21' fill='none' stroke='white' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='28' cy='50' r='3.5' fill='white'/%3E%3Ccircle cx='46' cy='50' r='3.5' fill='white'/%3E%3Cpath d='M33 36c0-5 3-8 8-8 0 5-3 8-8 8z' fill='%23F2C94C'/%3E%3C/svg%3E">
 <style>
-:root{--sage:#7FA37A;--sage-d:#4E7A4A;--sage-l:#E3EFDD;--beige:#F7F2E8;--white:#FFFFFF;--ink:#2B3128;--muted:#737A6C;--line:#EAE4D6;--warn:#C98A2E;--danger:#C0584F;--peach:#F09A72;--peach-l:#FDE6DA;--lilac:#9B8BD0;--lilac-l:#ECE7FA;--sky:#6BAFD6;--sky-l:#DDEFF9;--butter:#E8B92E;--butter-l:#FBF0C8}
-html[data-theme=dark]{color-scheme:dark;--white:#1E2320;--ink:#EDF1E8;--muted:#9AA293;--line:#2F3730;--beige:#171B18;--sage-l:#27352A;--peach-l:#3A2A24;--lilac-l:#2B2740;--sky-l:#1F3140;--butter-l:#3A3322}
-html[data-theme=dark] body{background:radial-gradient(circle at 10% 0%,#1F3140 0,transparent 40%),radial-gradient(circle at 100% 20%,#3A2A24 0,transparent 40%),linear-gradient(160deg,#171B18,#1A211C)}
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+:root{--sage:#1F2A44;--sage-d:#141C30;--sage-l:#E7EBF2;--beige:#F5F6F8;--white:#FFFFFF;--ink:#0B1020;--muted:#434B60;--line:#E3E6EC;--warn:#A88A55;--danger:#A9574F;--peach:#A8937A;--peach-l:#F3EEE7;--lilac:#6B7A94;--lilac-l:#ECEFF4;--sky:#3B4A6B;--sky-l:#E9EDF4;--butter:#B89B6A;--butter-l:#F4EEE2}
+html[data-theme=dark]{color-scheme:dark;--white:#161C2B;--ink:#FFFFFF;--muted:#C9D0DE;--line:#2A3346;--beige:#0F1420;--sage:#C9D3E8;--sage-d:#3B4A6B;--sage-l:#222B40;--peach-l:#2A2A33;--lilac-l:#252C3D;--sky-l:#1F2A3F;--butter-l:#2E2A22}
+html[data-theme=dark] body{background:radial-gradient(circle at 10% 0%,#1F2A44 0,transparent 40%),linear-gradient(160deg,#0F1420,#151C2C)}
 html[data-theme=dark] aside,html[data-theme=dark] nav.tabs{background:#1E2320;border-color:#2F3730}
 html[data-theme=dark] .btn,html[data-theme=dark] .chip{background:#252B26;color:#EDF1E8}
 html[data-theme=dark] input,html[data-theme=dark] select,html[data-theme=dark] textarea{background:#252B26;color:#EDF1E8;border-color:#2F3730}
 html[data-theme=dark] .toast{background:#EDF1E8;color:#171B18}
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:radial-gradient(circle at 10% 0%,#DDEFF9 0,transparent 40%),radial-gradient(circle at 100% 20%,#FDE6DA 0,transparent 40%),linear-gradient(160deg,#F7F2E8,#EEF5E8);color:var(--ink);min-height:100vh;padding-bottom:84px}
+body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:radial-gradient(circle at 10% 0%,#E3E8F1 0,transparent 40%),linear-gradient(160deg,#F7F8FA,#EDF0F5);color:var(--ink);min-height:100vh;padding-bottom:84px}
 .app{max-width:1100px;margin:0 auto;display:flex;min-height:100vh}
 aside{display:none;width:230px;background:var(--white);border-right:1px solid var(--line);padding:28px 18px;position:sticky;top:0;height:100vh}
 .brand{font-weight:700;font-size:18px;color:var(--sage-d);margin-bottom:28px}
@@ -27,10 +29,10 @@ aside button.on{background:var(--sage-l)}
 .ico{font-size:18px;line-height:1}
 .add-fab{background:var(--sage-d)!important;color:#fff!important;border-radius:50%!important;width:52px;height:52px;justify-content:center!important;padding:0!important;margin-top:-22px;font-size:11px}
 .add-fab .ico{font-size:24px}
-h1{font-size:22px;margin-bottom:4px}
+h1{font-family:"Fraunces",Georgia,serif;font-size:28px;font-weight:700;letter-spacing:-.3px;margin-bottom:4px}.hero{display:flex;align-items:center;gap:18px;padding:22px;border-radius:24px;background:linear-gradient(120deg,#1F2A44,#3B4A6B 55%,#6B7A94);color:#fff;margin-bottom:16px;box-shadow:0 18px 30px -18px rgba(31,42,68,.6)}.hero-t{font-family:"Fraunces",Georgia,serif;font-size:22px;font-weight:700}.hero-s{font-size:14px;opacity:.92;margin-top:4px}.breathe{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.35);flex-shrink:0;animation:breathe 4s ease-in-out infinite}@keyframes breathe{0%,100%{transform:scale(.85);opacity:.6}50%{transform:scale(1.15);opacity:1}}.ring-wrap{display:flex;align-items:center;gap:14px;margin:12px 0}.ring{width:64px;height:64px;transform:rotate(-90deg);flex-shrink:0}.ring-bg{fill:none;stroke:var(--line);stroke-width:3.5}.ring-fg{fill:none;stroke:var(--sage);stroke-width:3.5;stroke-linecap:round;transition:stroke-dasharray .6s ease}.ring-t{font-weight:700;font-size:17px}.ring-s{font-size:12px;color:var(--muted);margin-top:2px}.ico{transition:transform .2s}nav.tabs button.on .ico,aside button.on .ico{transform:scale(1.15)}.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#1F2A44,#3B4A6B);display:grid;place-items:center;flex-shrink:0;box-shadow:0 8px 16px -8px rgba(31,42,68,.7)}.brand{display:flex;align-items:center;gap:12px}.mtop{display:flex;align-items:center;gap:10px;padding:14px 18px 6px;max-width:1100px;margin:0 auto}.mtop b{font-family:"Fraunces",Georgia,serif;font-size:18px}@media(min-width:900px){.mtop{display:none}}
 .sub{color:var(--muted);font-size:14px;margin-bottom:20px}
-.grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
-.card{background:var(--white);border-radius:20px;padding:18px;border:1px solid var(--line);transition:transform .2s,box-shadow .2s;animation:rise .4s ease both}.card:hover{transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(60,80,50,.35)}.t-sage{background:var(--sage-l);border-color:transparent}.t-peach{background:var(--peach-l);border-color:transparent}.t-lilac{background:var(--lilac-l);border-color:transparent}.t-sky{background:var(--sky-l);border-color:transparent}.t-butter{background:var(--butter-l);border-color:transparent}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.btn{transition:transform .15s,background .2s,color .2s}.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}.btn.on{background:var(--sage);color:#fff;border-color:var(--sage)}.btn.no.on{background:var(--danger);border-color:var(--danger)}.btn.ra.on{background:var(--butter);border-color:var(--butter);color:var(--ink)}.btn.p{background:linear-gradient(135deg,var(--sage-d),var(--sky));border:0;color:#fff}.bars div:nth-child(2){background:var(--butter)}.bars div:nth-child(3){background:var(--peach)}.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-size:13px;transition:all .3s;z-index:30;pointer-events:none;max-width:90%}.toast.show{opacity:1;transform:translateX(-50%)}.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}.chip{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;transition:all .2s;color:var(--ink)}.chip.on{background:var(--sage-d);color:#fff;border-color:var(--sage-d)}.chip:hover{transform:translateY(-1px)}nav.tabs button:hover,aside button:hover{color:var(--sage-d)}@media(min-width:900px){.toast{bottom:28px}}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(2,1fr);margin-bottom:18px}
+.card{background:var(--white);border-radius:20px;padding:18px;border:1px solid var(--line);transition:transform .2s,box-shadow .2s;animation:rise .4s ease both}.card:hover{transform:translateY(-2px);box-shadow:0 12px 24px -14px rgba(60,80,50,.35)}.t-sage{background:var(--sage-l);border-color:transparent}.t-peach{background:var(--peach-l);border-color:transparent}.t-lilac{background:var(--lilac-l);border-color:transparent}.t-sky{background:var(--sky-l);border-color:transparent}.t-butter{background:var(--butter-l);border-color:transparent}@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.btn{transition:transform .15s,background .2s,color .2s}.btn:hover{transform:translateY(-1px)}.btn:active{transform:scale(.97)}.btn.on{background:var(--sage);color:#fff;border-color:var(--sage)}.btn.no.on{background:var(--danger);border-color:var(--danger)}.btn.ra.on{background:var(--butter);border-color:var(--butter);color:var(--ink)}.btn.p{background:linear-gradient(135deg,var(--sage-d),var(--sky));border:0;color:#fff}.bars div:nth-child(2){background:var(--butter)}.bars div:nth-child(3){background:var(--peach)}.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:14px;font-size:13px;transition:all .3s;z-index:30;pointer-events:none;max-width:90%}.toast.show{opacity:1;transform:translateX(-50%)}.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px}.chip{border:1px solid var(--line);background:var(--white);border-radius:999px;padding:8px 14px;font:inherit;font-size:13px;cursor:pointer;white-space:nowrap;transition:all .2s;color:var(--ink)}.chip.on{background:var(--sage-d);color:#fff;border-color:var(--sage-d)}.chip:hover{transform:translateY(-1px)}nav.tabs button:hover,aside button:hover{color:var(--sage-d)}.quote-c{background:linear-gradient(135deg,var(--sage-l),var(--white));overflow:hidden}.q-mark{font-family:"Fraunces",Georgia,serif;font-size:56px;line-height:.6;color:var(--sage);opacity:.5}.q-t{font-family:"Fraunces",Georgia,serif;font-size:19px;margin-top:6px;color:var(--ink)}.donut-wrap{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.donut{width:116px;height:116px;border-radius:50%;display:grid;place-items:center;position:relative;flex-shrink:0}.donut:before{content:"";position:absolute;inset:18px;background:var(--white);border-radius:50%}.donut span{position:relative;font-weight:700;font-size:18px}.legend{display:grid;gap:8px;font-size:13px;color:var(--ink)}.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:8px}.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;text-align:center}.wd span{font-size:12px;color:var(--muted)}.wd i{display:block;height:48px;margin-top:6px;border-radius:12px;background:var(--beige);border:1px solid var(--line)}.wd.on i{background:linear-gradient(180deg,var(--sage),var(--sky));border-color:transparent}.badges{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}@media(min-width:720px){.badges{grid-template-columns:repeat(4,1fr)}}.badge{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:4px}.badge span{font-size:24px;filter:grayscale(1);opacity:.45}.badge.on span{filter:none;opacity:1}.badge b{font-size:14px}.badge small{color:var(--muted);font-size:12px}.badge.on{background:linear-gradient(135deg,var(--sage-l),var(--white))}@media(max-width:480px){main{padding:18px 14px 8px}h1{font-size:24px}.sub{font-size:13px;margin-bottom:16px}.hero{padding:18px;gap:14px}.hero-t{font-size:19px}.hero>div:last-child{min-width:0}.card{padding:16px;border-radius:18px}.grid{gap:10px}.stat-n{font-size:21px}.section-t{margin:20px 0 8px}.week{gap:5px}.wd span{font-size:11px}.wd i{height:40px}.badges{gap:8px}.badge{padding:12px}.actions{flex-wrap:wrap}.btn{flex:1 1 auto;min-width:calc(50% - 4px);padding:12px 8px}.actions.ans{flex-wrap:nowrap}.actions.ans .btn,#dec .btn{min-width:0;padding:12px 4px;font-size:12px}#dec{flex-wrap:nowrap}.donut-wrap{justify-content:center}.donut{width:104px;height:104px}.donut:before{inset:16px}.legend{font-size:12px}.ring-wrap{gap:10px}.q-t{font-size:17px}.toast{bottom:92px;font-size:12px}nav.tabs{padding-bottom:calc(14px + env(safe-area-inset-bottom,0px))}nav.tabs button{min-width:56px}}@media(min-width:900px){.toast{bottom:28px}}
 .stat-n{font-size:24px;font-weight:700;color:var(--sage-d)}
 .stat-l{font-size:12px;color:var(--muted);margin-top:4px}
 .section-t{font-size:15px;font-weight:600;margin:24px 0 10px}
@@ -73,9 +75,10 @@ textarea{resize:vertical;min-height:80px}
 </style>
 </head>
 <body>
+<header class="mtop"><span class="logo"><svg viewBox="0 0 64 64" width="26" height="26"><path d="M10 16h7l6 26h23l5-18H21" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="50" r="3.5" fill="#fff"/><circle cx="46" cy="50" r="3.5" fill="#fff"/><path d="M33 36c0-5 3-8 8-8 0 5-3 8-8 8z" fill="#F2C94C"/></svg></span><b>Mindful Cart</b></header>
 <div class="app">
   <aside>
-    <div class="brand">Mindful Cart<small>Belanja dengan sadar</small></div>
+    <div class="brand"><span class="logo"><svg viewBox="0 0 64 64" width="26" height="26"><path d="M10 16h7l6 26h23l5-18H21" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="28" cy="50" r="3.5" fill="#fff"/><circle cx="46" cy="50" r="3.5" fill="#fff"/><path d="M33 36c0-5 3-8 8-8 0 5-3 8-8 8z" fill="#F2C94C"/></svg></span><span>Mindful Cart<small>Belanja dengan sadar</small></span></div>
     <button data-go="dashboard"><span class="ico">◐</span>Dashboard</button>
     <button data-go="wishlist"><span class="ico">♡</span>Wishlist</button>
     <button data-go="add"><span class="ico">＋</span>Tambah Produk</button>
@@ -116,6 +119,9 @@ const SEED = {
 };
 
 const state = {items:[],activity:[],name:"Rama",waitDays:7,budget:2000000,hourly:17000,filter:"all",reflectOpen:null};
+function badgesHtml(){ const days=new Set(state.items.map(i=>new Date(i.added).toDateString())).size; const B=[["🌱","Jeda pertama",state.items.length>0],["💰","Batalkan 1 pembelian",state.items.some(i=>i.decision==="cancel")],["🔥","Aktif 3 hari",days>=3],["🧘","10 keputusan sadar",state.items.filter(i=>i.decision).length>=10]]; return B.map(([e,t,ok])=>`<div class="badge ${ok?'on':''}"><span>${e}</span><b>${t}</b><small>${ok?'Terbuka':'Terkunci'}</small></div>`).join(""); }
+function donutBg(){ const d=state.items.filter(i=>i.decision); const n=d.length; if(!n) return "var(--line)"; const b=d.filter(i=>i.decision==="buy").length/n*100; const t=d.filter(i=>i.decision==="delay").length/n*100; return `conic-gradient(var(--sage) 0 ${b}%, var(--sky) ${b}% ${b+t}%, var(--peach) ${b+t}% 100%)`; }
+function weekHtml(){ return [...Array(7)].map((_,k)=>{ const d=new Date(); d.setDate(d.getDate()-(6-k)); const has=state.items.some(i=>new Date(i.added).toDateString()===d.toDateString()); return `<div class="wd ${has?'on':''}"><span>${d.toLocaleDateString("id-ID",{weekday:"short"})}</span><i></i></div>`; }).join(""); }
 const rp = n => "Rp " + n.toLocaleString("id-ID");
 const endOf = it => it.added + it.wait*DAY;
 function remaining(it){ return Math.max(0, endOf(it) - Date.now()); }
@@ -134,18 +140,22 @@ const views = {
     const act = state.activity.map(a=>`<div class="item"><div class="dot"></div><div class="t">${a.t}</div><div class="m">${a.d}</div></div>`).join("");
     return `
       <h1>Mindful Chart</h1>
-      <p class="sub">Setiap jeda adalah kesempatan untuk memilih lebih sadar.</p><div class="actions" style="margin:0 0 18px"><button class="btn p" data-go="add">+ Catat niat belanja</button></div>
+      <div class="hero"><div class="breathe"></div><div><div class="hero-t">Ambil napas dulu.</div><div class="hero-s">Setiap jeda adalah kesempatan untuk memilih lebih sadar.</div></div></div><div class="actions" style="margin:0 0 18px"><button class="btn p" data-go="add">+ Catat niat belanja</button><button class="btn" data-theme-toggle>◐ Mode gelap / terang</button></div>
       <div class="grid">
         <div class="card t-sage" data-go="wishlist" style="cursor:pointer"><div class="stat-n">${state.items.filter(i=>i.status!=="done").length}</div><div class="stat-l">Produk di wishlist</div></div>
         <div class="card t-butter" data-go="wishlist" style="cursor:pointer"><div class="stat-n">${waiting}</div><div class="stat-l">Sedang masa tunggu</div></div>
         <div class="card t-peach" data-go="insights" style="cursor:pointer"><div class="stat-n">${rp(saved)}</div><div class="stat-l">Dana Terselamatkan</div></div>
         <div class="card t-lilac" data-go="insights" style="cursor:pointer"><div class="stat-n">${Math.round(cancelled/total*100)}%</div><div class="stat-l">Keputusan membatalkan</div></div>
       </div>
+      <div class="card quote-c" style="margin-bottom:16px"><div class="q-mark">“</div><div class="q-t">Jeda kecil hari ini bisa menjadi keputusan yang jauh lebih bijak esok hari.</div></div>
       <div class="section-t">Statistik keputusan</div>
       <div class="card">
-        <div class="countdown"><span>Beli ${buy}</span><span>Tunda ${later}</span><span>Batal ${cancelled}</span></div>
-        <div class="bar"><span style="width:${Math.round(buy/total*100)}%"></span></div>
+        
+        <div class="donut-wrap"><div class="donut" style="background:${donutBg()}"><span>${total>0?Math.round(cancelled/total*100):0}%</span></div><div class="legend"><span><i style="background:var(--sage)"></i>Beli ${buy}</span><span><i style="background:var(--sky)"></i>Tunda ${later}</span><span><i style="background:var(--peach)"></i>Batal ${cancelled}</span></div></div>
       </div>
+      <div class="section-t">Aktivitas 7 hari</div>
+      <div class="card"><div class="week">${weekHtml()}</div></div>
+      <div class="section-t">Pencapaian</div><div class="badges">${badgesHtml()}</div>
       <div class="section-t">Aktivitas terbaru</div>
       <div class="card">${act}</div>`;
   },
@@ -163,7 +173,7 @@ const views = {
         <div class="countdown"><span class="cat">${it.category}</span><span class="pill ${ready?'':'w'}">${ready?'Siap dievaluasi':'Tunggu '+daysLeft(it)+' hari'}</span></div>
         <div style="font-weight:600;font-size:16px">${it.name}</div>
         <div class="price">${rp(it.price)}</div>
-        <div class="bar"><span style="width:${progress(it)}%"></span></div>
+        <div class="ring-wrap"><svg class="ring" viewBox="0 0 36 36"><path class="ring-bg" pathLength="100" d="M18 2.5a15.5 15.5 0 1 1 0 31a15.5 15.5 0 1 1 0-31"/><path class="ring-fg" pathLength="100" stroke-dasharray="${progress(it)} 100" d="M18 2.5a15.5 15.5 0 1 1 0 31a15.5 15.5 0 1 1 0-31"/></svg><div><div class="ring-t">${progress(it)}%</div><div class="ring-s">${ready?'Siap dievaluasi':'Jeda berjalan'}</div></div></div>
         <div class="reason">“${it.reason}”</div>
         <div class="mid-hint">Dapat dievaluasi: ${fmtDate(endOf(it))}</div>
         <div class="actions">${act}</div>
