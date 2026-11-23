@@ -233,7 +233,7 @@ const views = {
       <h1>Profil</h1>
       <p class="sub">Atur pengalaman jedamu.</p>
       <div class="card" style="max-width:520px">
-        <div style="font-weight:600;font-size:16px">${state.name}</div>
+        <label for="p-name">Nama</label><input id="p-name" value="${state.name}" maxlength="30" placeholder="Tulis namamu" style="margin-bottom:6px">
         <div class="cat" style="margin-bottom:14px">Pengguna Mindful Cart</div>
         <label>Durasi masa tunggu (hari)</label>
         <select id="p-wait">${[3,7,14,30].map(d=>`<option value="${d}" ${d===state.waitDays?'selected':''}>${d} hari</option>`).join("")}</select>
@@ -301,6 +301,7 @@ document.addEventListener("click", e=>{
 });
 
 document.addEventListener("change", e=>{
+  if(e.target.id==="p-name"){ const v=e.target.value.trim(); if(v){ state.name=v; toast("Nama profil diperbarui"); } else { e.target.value=state.name; } }
   if(e.target.id==="p-wait"){ state.waitDays = Number(e.target.value); }
 });
 
